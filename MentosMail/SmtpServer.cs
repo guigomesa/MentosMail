@@ -11,7 +11,7 @@ namespace MentosMail
 {
     public sealed class SmtpServer : ServerBase
     {
-        public SmtpServer(SmtpServerConf conf) : base(conf)
+        public SmtpServer(ISmtpServerConf conf) : base(conf)
         {
         }
 

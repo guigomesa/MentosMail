@@ -12,9 +12,9 @@ namespace MentosMail
 {
     public abstract class ServerBase
     {
-        protected SmtpServerConf _ServerConf { get; set; }
+        protected ISmtpServerConf _ServerConf { get; set; }
 
-        protected ServerBase(SmtpServerConf conf)
+        protected ServerBase(ISmtpServerConf conf)
         {
             if (conf == null)
             {
@@ -77,8 +77,10 @@ namespace MentosMail
 
         protected virtual SmtpClient GetSmtpClient()
         {
-            var smtp = new SmtpClient(_ServerConf.Host, _ServerConf.Port);
-            smtp.UseDefaultCredentials = _ServerConf.UseDefaultCredential;
+            var smtp = new SmtpClient(_ServerConf.Host, _ServerConf.Port)
+            {
+                UseDefaultCredentials = _ServerConf.UseDefaultCredential
+            };
             if (!_ServerConf.UseDefaultCredential)
             {
                 smtp.Credentials = GetCredential();
@@ -123,7 +125,7 @@ namespace MentosMail
             return true;
         }
 
-        protected virtual bool IsValidConfigServer(SmtpServerConf conf)
+        protected virtual bool IsValidConfigServer(ISmtpServerConf conf)
         {
             if (string.IsNullOrEmpty(conf.Host))
             {

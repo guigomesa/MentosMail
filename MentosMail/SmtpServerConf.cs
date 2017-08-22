@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace MentosMail
 {
-    public class SmtpServerConf
+    public interface ISmtpServerConf
+    {
+        string Host { get; set; }
+        int Port { get; set; }
+        string Username { get; set; }
+        string Password { get; set; }
+        bool UseSsl { get; set; }
+        bool UseDefaultCredential { get; set; }
+    }
+
+    public class SmtpServerConf : ISmtpServerConf
     {
         public string Host { get; set; }
         public int Port { get; set; } = 587;
