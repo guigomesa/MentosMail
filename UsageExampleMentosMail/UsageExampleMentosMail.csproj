@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{24E2FDC2-16C9-4F4D-9BF4-C80A322C762A}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MentosMail</RootNamespace>
-    <AssemblyName>MentosMail</AssemblyName>
+    <ProjectGuid>{8BA44659-3BDA-4336-B022-601818F23544}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>UsageExampleMentosMail</RootNamespace>
+    <AssemblyName>UsageExampleMentosMail</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,15 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttributesHelper\SenderFieldInMailAttribute.cs" />
-    <Compile Include="MessageBox\IMessageMail.cs" />
-    <Compile Include="MessageBox\Message.cs" />
-    <Compile Include="MessageBox\MessageMailBuilder.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerBase.cs" />
-    <Compile Include="SmtpServer.cs" />
-    <Compile Include="SmtpServerConf.cs" />
-    <Compile Include="TemplateService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MentosMail\MentosMail.csproj">
+      <Project>{24e2fdc2-16c9-4f4d-9bf4-c80a322c762a}</Project>
+      <Name>MentosMail</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

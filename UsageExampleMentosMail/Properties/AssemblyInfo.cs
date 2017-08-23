@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MentosMail")]
+[assembly: AssemblyTitle("UsageExampleMentosMail")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Guigomesa")]
-[assembly: AssemblyProduct("MentosMail")]
-[assembly: AssemblyCopyright("MIT")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("UsageExampleMentosMail")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("24e2fdc2-16c9-4f4d-9bf4-c80a322c762a")]
+[assembly: Guid("8ba44659-3bda-4336-b022-601818f23544")]
 
 // Version information for an assembly consists of the following four values:
 //
