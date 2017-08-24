@@ -9,29 +9,26 @@ namespace MentosMail
 {
     public class TemplateService : IDisposable
     {
-        private string HtmlFinal { get; set; }
-
         private string _templateBase { get; set; }
-        private object _model { get; set; }
 
-        public TemplateService(object model, string templateBase)
+        public TemplateService(string templateBase)
         {
             _templateBase = templateBase;
-            _model = model;
+            
         }
 
-        public string GenerateTemplate(bool ignoreErrors=true)
+        public string GenerateTemplateFromViewModel(object model,bool ignoreErrors=true)
         {
             var templateFinal = _templateBase;
 
-            var properties = _model.GetType().GetProperties()
+            var properties = model.GetType().GetProperties()
                 .Where(v => v.IsDefined(typeof(SenderFieldInMailAttribute), false));
 
             foreach (var prop in properties)
             {
                 try
                 {
-                    var valueField = _model.GetType().GetProperty(prop.Name).GetValue(_model, null);
+                    var valueField = model.GetType().GetProperty(prop.Name).GetValue(model, null);
 
                     var valueReplace = $"[{prop.Name}]";
 
@@ -69,10 +66,36 @@ namespace MentosMail
             return templateFinal;
         }
 
+        public string GenerateTemplateFromAnonymous(object model)
+        {
+            Dictionary<string, object> properties = model.GetType()
+                                     .GetProperties()
+                                     .ToDictionary(p => p.Name, p => p.GetValue(model));
+            var templateFinal = _templateBase;
+
+            foreach (var prop in properties)
+            {
+                var fieldReplace = $"[{prop.Key}]";
+                var valueField = prop.Value.ToString();
+
+                templateFinal = templateFinal.Replace(fieldReplace, valueField);
+            }
+            return templateFinal;
+        }
+
+        public static TemplateService GenerateTemplateServiceFromFile(string path)
+        {
+            throw new NotImplementedException("Method not implemented");
+        }
+
+        public static TemplateService GenerateTemplateServiceFromUrl(string url)
+        {
+            throw new NotImplementedException("Method not implemented");
+        }
+
         public void Dispose()
         {
             _templateBase = null;
-            _model = null;
         }
     }
 }

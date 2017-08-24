@@ -24,14 +24,14 @@ namespace UsageExampleMentosMail
         static MessageMail GetMessage()
         {
             var msgBuilder = new MessageMailBuilder()
-                .AddTo(new MailAddress("to@email.com","to display name"))
-                .CreateBodyMessage(GenerateTemplate()) //send text
-                .CreateSubject("Subject Email")
-                .SetEncoding(Encoding.UTF8)
-                .SetIsBodyHtml(true)
-                .SetPriority(MailPriority.High)
-                .SetReplyTo(new MailAddress("reply@email.com","name for display"))
-                .SetSender(new MailAddress("sender@email.com","sender display name"));
+                .To(new MailAddress("to@email.com","to display name"))
+                .BodyMessage(GenerateTemplate()) //send text
+                .Subject("Subject Email")
+                .Encoding(Encoding.UTF8)
+                .IsBodyHtml()
+                .Priority(MailPriority.High)
+                .ReplyTo(new MailAddress("reply@email.com","name for display"))
+                .Sender(new MailAddress("sender@email.com","sender display name"));
 
             return msgBuilder.Build();
         }
@@ -52,9 +52,9 @@ namespace UsageExampleMentosMail
                 Name = "Guilherme Almeida (guigomesa)"
             };
 
-            var templateService = new TemplateService(model, htmlTemplate);
+            var templateService = new TemplateService(htmlTemplate);
 
-            return templateService.GenerateTemplate();
+            return templateService.GenerateTemplateFromViewModel(model);
 
         }
 

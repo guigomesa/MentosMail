@@ -70,10 +70,18 @@ See the example below:
             return templateService.GenerateTemplate();
 
         }
-``` 
+```
+
 
 Check the "UsageExampleMentosMail" project to see it in action
 
+
 # Future
 
-In future support for the nuget package and other submissions besides smtp (MailGun etc).
+In future support for the nuget package and other sender servers (MailGun etc).
+
+
+## Is not supported yet:
+
+* Send email assynchronous method
+* Retrieve templates from file or url
