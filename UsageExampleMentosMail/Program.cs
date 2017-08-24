@@ -5,9 +5,8 @@ using System.Net.Mail;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using MentosMail;
 using MentosMail.AttributesHelper;
-using MentosMail.MessageBox;
+
 
 namespace UsageExampleMentosMail
 {
@@ -15,15 +14,14 @@ namespace UsageExampleMentosMail
     {
         static void Main(string[] args)
         {
-            SmtpServer serverEmail = new SmtpServer(GetConfigSmtp());
-
+            MentosMail.SmtpServer serverEmail = new MentosMail.SmtpServer(GetConfigSmtp());
             serverEmail.Send(GetMessage());
 
         }
 
-        static MessageMail GetMessage()
+        static MentosMail.MessageBox.MessageMail GetMessage()
         {
-            var msgBuilder = new MessageMailBuilder()
+            var msgBuilder = new MentosMail.MessageBox.MessageMailBuilder()
                 .To(new MailAddress("to@email.com","to display name"))
                 .BodyMessage(GenerateTemplate()) //send text
                 .Subject("Subject Email")
@@ -52,16 +50,16 @@ namespace UsageExampleMentosMail
                 Name = "Guilherme Almeida (guigomesa)"
             };
 
-            var templateService = new TemplateService(htmlTemplate);
+            var templateService = new MentosMail.TemplateService(htmlTemplate);
 
             return templateService.GenerateTemplateFromViewModel(model);
 
         }
 
 
-        static SmtpServerConf GetConfigSmtp()
+        static MentosMail.SmtpServerConf GetConfigSmtp()
         {
-            return new SmtpServerConf
+            return new MentosMail.SmtpServerConf
             {
                 Host = "smtp.gmail.com",
                 Username = "email@gmail.com",

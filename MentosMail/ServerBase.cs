@@ -6,7 +6,6 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using MentosMail.MessageBox;
 
 namespace MentosMail
 {
@@ -28,7 +27,7 @@ namespace MentosMail
         }
 
 
-        protected virtual MailMessage CreateMessage(IMessageMail message)
+        protected virtual MailMessage CreateMessage(MentosMail.MessageBox.IMessageMail message)
         {
             var mail = new MailMessage();
             //add all to
@@ -96,7 +95,7 @@ namespace MentosMail
             return new NetworkCredential(_ServerConf.Username, _ServerConf.Password);
         }
 
-        protected virtual bool IsValidMessage(IMessageMail message)
+        protected virtual bool IsValidMessage(MentosMail.MessageBox.IMessageMail message)
         {
             if (message == null)
             {
@@ -146,9 +145,9 @@ namespace MentosMail
             return true;
         }
 
-        public abstract bool Send(IMessageMail message);
-        public abstract bool Send(params IMessageMail[]  messages);
-        public abstract Task<bool> SendAssync(IMessageMail message, CancellationToken? token = null);
-        public abstract Task<bool> SendAssync(CancellationToken? token = null, params IMessageMail[] messages);
+        public abstract bool Send(MentosMail.MessageBox.IMessageMail message);
+        public abstract bool Send(params MentosMail.MessageBox.IMessageMail[]  messages);
+        public abstract Task<bool> SendAssync(MentosMail.MessageBox.IMessageMail message, CancellationToken? token = null);
+        public abstract Task<bool> SendAssync(CancellationToken? token = null, params MentosMail.MessageBox.IMessageMail[] messages);
     }
 }
