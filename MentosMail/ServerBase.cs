@@ -56,6 +56,9 @@ namespace MentosMail
             //priority
             mail.Priority = message.Priority;
 
+            //From
+            mail.From = message.From;
+
             //body message
             mail.Body = message.BodyMessage;
             mail.BodyEncoding = message.MailEnconding;
@@ -120,6 +123,10 @@ namespace MentosMail
             if (string.IsNullOrEmpty(message.Subject))
             {
                 throw new ArgumentException("Subject cannot be null or empty", nameof(message.Subject));
+            }
+            if (message.From == null)
+            {
+                throw new ArgumentException("From cannot be null or empty", nameof(message.From));
             }
             return true;
         }

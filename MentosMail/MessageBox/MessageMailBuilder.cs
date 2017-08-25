@@ -133,6 +133,23 @@ namespace MentosMail.MessageBox
             return this;
         }
 
+
+        public MessageMailBuilder From(MailAddress from)
+        {
+            this.Message.From = from;
+            return this;
+        }
+
+        public MessageMailBuilder From(string email)
+        {
+            return From(new MailAddress(email));
+        }
+
+        public MessageMailBuilder From(string email, string displayName)
+        {
+            return From(new MailAddress(email,displayName));
+        }
+
         public MessageMailBuilder ReplyTo(string email)
         {
             return this.ReplyTo(new MailAddress(email));

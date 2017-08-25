@@ -19,6 +19,7 @@ namespace MentosMail.MessageBox
         IList<MailAddress> Bcc { get; set; }
         MailAddress Sender { get; set; }
         MailAddress ReplyTo { get; set; }
+        MailAddress From { get; set; }
         IList<Attachment> Att { get; set; }
     }
 }

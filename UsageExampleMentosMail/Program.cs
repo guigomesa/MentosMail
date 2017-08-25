@@ -15,7 +15,10 @@ namespace UsageExampleMentosMail
         static void Main(string[] args)
         {
             MentosMail.SmtpServer serverEmail = new MentosMail.SmtpServer(GetConfigSmtp());
-            serverEmail.Send(GetMessage());
+            var msg = GetMessage();
+            serverEmail.Send(msg);
+            Console.WriteLine("Email enviado");
+            Console.ReadLine();
 
         }
 
@@ -23,6 +26,7 @@ namespace UsageExampleMentosMail
         {
             var msgBuilder = new MentosMail.MessageBox.MessageMailBuilder()
                 .To(new MailAddress("to@email.com","to display name"))
+                .From(new MailAddress("from@email.com","from name"))
                 .BodyMessage(GenerateTemplate()) //send text
                 .Subject("Subject Email")
                 .Encoding(Encoding.UTF8)
@@ -61,12 +65,12 @@ namespace UsageExampleMentosMail
         {
             return new MentosMail.SmtpServerConf
             {
-                Host = "smtp.gmail.com",
-                Username = "email@gmail.com",
-                Password = "your-password",
-                Port = 465,
+                Host = "smtp.host.com",
+                Username = "user",
+                Password = "pass",
+                Port = 587,
                 UseDefaultCredential = false,
-                UseSsl = true
+                UseSsl = false
             };
         }
     }
