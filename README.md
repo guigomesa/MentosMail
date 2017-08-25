@@ -3,6 +3,14 @@ Send Email with .Net Framework.
 
 Simple usage.
 
+## Install
+
+Use nuget package to install
+
+``` powershell
+    Install-Package MentosMail
+```
+
 ## Usage
 
 To use instace one server 'SmtpServer'
@@ -79,7 +87,7 @@ Check the "UsageExampleMentosMail" project to see it in action
 
 ## Future
 
-In future support for the nuget package, other sender servers (MailGun etc) and assync methods to send email.
+In future support for sender servers (MailGun etc) and assync methods to send email.
 
 
 ## Is not supported yet:

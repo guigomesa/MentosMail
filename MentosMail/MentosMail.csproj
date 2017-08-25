@@ -50,5 +50,8 @@
     <Compile Include="SmtpServerConf.cs" />
     <Compile Include="TemplateService.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="package.nuspec" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
