@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using MentosMail.AttributesHelper;
+using System.Web;
+
 
 namespace MentosMail
 {
@@ -11,12 +14,30 @@ namespace MentosMail
     {
         private string _templateBase { get; set; }
 
-        public TemplateService(string templateBase)
+        /// <summary>
+        /// Construct class based in template or path of file for template
+        /// </summary>
+        /// <param name="template">Path or template</param>
+        public TemplateService(string template)
         {
-            _templateBase = templateBase;
-            
+            _templateBase = System.IO.File.Exists(template) ? GetTemplateFromFile(template) : template;
         }
 
+        /// <summary>
+        /// Construct class based in Uri for template
+        /// </summary>
+        /// <param name="uri">Uri to path template</param>
+        public TemplateService(Uri uri)
+        {
+            _templateBase = GetTemplateFromUrl(uri);
+        }
+
+        /// <summary>
+        /// Replace template based in model decored with attribute 'SenderfieldInMail'. The base pattern to replace is [propertie] but is changed with attribute
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="ignoreErrors"></param>
+        /// <returns></returns>
         public string GenerateTemplateFromViewModel(object model,bool ignoreErrors=true)
         {
             var templateFinal = _templateBase;
@@ -66,9 +87,16 @@ namespace MentosMail
             return templateFinal;
         }
 
-        public string GenerateTemplateFromAnonymous(object model)
+        /// <summary>
+        /// Replace template based in dynamic model.
+        /// The replace pattern is [propertie-name]
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public string GenerateTemplateFromAnonymous(dynamic model)
         {
-            Dictionary<string, object> properties = model.GetType()
+            object internalModel = (object) model;
+            Dictionary<string, object> properties = internalModel.GetType()
                                      .GetProperties()
                                      .ToDictionary(p => p.Name, p => p.GetValue(model));
             var templateFinal = _templateBase;
@@ -83,14 +111,30 @@ namespace MentosMail
             return templateFinal;
         }
 
-        public static TemplateService GenerateTemplateServiceFromFile(string path)
+
+        /// <summary>
+        /// Retry template from file
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        private static string GetTemplateFromFile(string path)
         {
-            throw new NotImplementedException("Method not implemented");
+            var content = System.IO.File.ReadAllText(path);
+            return content;
         }
 
-        public static TemplateService GenerateTemplateServiceFromUrl(string url)
+        /// <summary>
+        /// Retry template from Uri
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
+        private static string GetTemplateFromUrl(Uri uri)
         {
-            throw new NotImplementedException("Method not implemented");
+            using (System.Net.WebClient wc = new System.Net.WebClient())
+            {
+                var content = wc.DownloadString(uri.ToString());
+                return content;
+            }
         }
 
         public void Dispose()
