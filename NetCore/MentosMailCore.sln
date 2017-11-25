@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MentosMailCore", "MentosMailCore/MentosMailCore.csproj", "{420FF70B-866C-4DCF-93B8-79C6A2DDFE09}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsMentosMailCore", "TestsMentosMailCore\TestsMentosMailCore.csproj", "{79938E8E-A833-4A77-A239-1080E05DC391}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{420FF70B-866C-4DCF-93B8-79C6A2DDFE09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{420FF70B-866C-4DCF-93B8-79C6A2DDFE09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{420FF70B-866C-4DCF-93B8-79C6A2DDFE09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79938E8E-A833-4A77-A239-1080E05DC391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79938E8E-A833-4A77-A239-1080E05DC391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79938E8E-A833-4A77-A239-1080E05DC391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79938E8E-A833-4A77-A239-1080E05DC391}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
