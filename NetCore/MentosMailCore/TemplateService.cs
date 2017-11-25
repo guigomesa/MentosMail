@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace MentosMailCore
 {
     public class TemplateService : IDisposable
     {
         private string _templateBase { get; set; }
-
+        
         public TemplateService(string templateOrPathFile)
         {
             _templateBase = System.IO.File.Exists(templateOrPathFile)
@@ -19,7 +20,13 @@ namespace MentosMailCore
         {
             _templateBase = GetTemplateFromUrl(uri);
         }
-
+        
+        /// <summary>
+        /// Replace template based in model decored with attribute 'SenderfieldInMail'. The base pattern to replace is [propertie] but is changed with attribute
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="ignoreErrors"></param>
+        /// <returns></returns>
         public string GenerateTemplateFromViewModel(object model, bool ignoreErrors = true)
         {
             var templateFinal = _templateBase.ToString();
@@ -62,7 +69,12 @@ namespace MentosMailCore
             }
             return templateFinal;
         }
-
+        
+        /// <summary>
+        /// Generate template based in Anonymous object
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public string GenerateTemplateFromAnonymous(dynamic model)
         {
             object internalModel = (object) model;
@@ -81,11 +93,21 @@ namespace MentosMailCore
             return templateFinal;
         }
 
+        /// <summary>
+        /// Get template from a specified file
+        /// </summary>
+        /// <param name="pathFile"></param>
+        /// <returns></returns>
         private static string GetTemplateFromFile(string pathFile)
         {
             return System.IO.File.ReadAllText(pathFile);
         }
 
+        /// <summary>
+        /// Get template from a specified uri
+        /// </summary>
+        /// <param name="uri"></param>
+        /// <returns></returns>
         private string GetTemplateFromUrl(Uri uri)
         {
             using (System.Net.WebClient wc = new System.Net.WebClient())
