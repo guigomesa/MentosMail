@@ -25,7 +25,7 @@ dotnet test ./TestsMentosMailCore/TestsMentosMailCore.csproj -c Release
 # Instead, run directly with mono for the full .net version 
 # dotnet build ./test/TEST_PROJECT_NAME -c Release -f net451
 
-#revision=${TRAVIS_JOB_ID:=1}  
-#revision=$(printf "%04d" $revision) 
+revision=${TRAVIS_JOB_ID:=1}  
+revision=$(printf "%04d" $revision) 
 
 dotnet pack
