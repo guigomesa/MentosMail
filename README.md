@@ -3,6 +3,17 @@ Send Email with .Net Framework.
 
 Simple usage.
 
+## Build
+
+### NetCore Build
+
+![Travis Build](https://api.travis-ci.org/guigomesa/MentosMail.svg?branch=master)
+
+### NetStandart
+
+n/a
+
+
 ## Install
 
 Use nuget package to install
