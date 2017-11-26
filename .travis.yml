@@ -1,0 +1,15 @@
+language: csharp
+mono: none
+dotnet: 2.0.0
+dist: trusty
+
+addons:
+  apt:
+    sources:
+    - sourceline: 'deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-artful-prod artful main'
+      key_url: 'https://packages.microsoft.com/keys/microsoft.asc'
+    packages:
+    - dotnet-sdk-2.0.2
+    # - dotnet-sharedframework-microsoft.netcore.app-1.0.5
+script:  
+  - ./build.sh
