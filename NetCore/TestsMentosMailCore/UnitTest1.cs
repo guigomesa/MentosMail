@@ -23,7 +23,7 @@ namespace TestsMentosMailCore
             Assert.AreEqual(msg.From.Address,"from@mentosmailcore.com");
             
             Assert.AreEqual(msg.BodyMessage, "Hello World");
-            Assert.AreEqual(msg.BodyMessage, "Subject Email");
+            Assert.AreEqual(msg.Subject, "Subject Email");
             Assert.AreEqual(msg.MailEnconding, Encoding.UTF8);
             Assert.IsTrue(msg.IsBodyHtml);
             Assert.AreEqual(msg.Priority,MailPriority.High);
@@ -52,7 +52,12 @@ namespace TestsMentosMailCore
             
             Assert.AreEqual(htmlTest,htmlSender);
         }
-        
+
+        [TestMethod]
+        public void TestSendMail()
+        {
+            
+        }
         
         
         private static MentosMailCore.SmtpServerConf GetConfigSmtp()

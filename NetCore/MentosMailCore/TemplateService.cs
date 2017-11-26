@@ -62,7 +62,7 @@ namespace MentosMailCore
                     }
                     templateFinal = templateFinal.Replace(valueReplace, valueField?.ToString() ?? string.Empty);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     if (!ignoreErrors) throw;
                 }
