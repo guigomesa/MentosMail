@@ -50,7 +50,7 @@ namespace MentosMailCore
 
         private bool Send()
         {
-            Send(Message);
+           return Send(Message);
         }
 
         public override Task<bool> SendAsync(IMessageMail message, CancellationToken? token = null)
