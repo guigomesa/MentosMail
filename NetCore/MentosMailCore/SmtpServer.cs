@@ -9,6 +9,10 @@ namespace MentosMailCore
 {
     public sealed class SmtpServer : ServerBase
     {
+        private IMessageMail Message { get; set; }
+        private IMessageMail[] Messages { get; set; }
+        
+        
         public SmtpServer(ISmtpServerConf conf) : base(conf)
         {
         }
@@ -44,14 +48,27 @@ namespace MentosMailCore
             return messages.Select(Send).All(m => m);
         }
 
-        public override Task<bool> SendAssync(IMessageMail message, CancellationToken? token = null)
+        private bool Send()
         {
-            throw new NotImplementedException("In future version");
+            Send(Message);
         }
 
-        public override Task<bool> SendAssync(CancellationToken? token = null, params IMessageMail[] messages)
+        public override Task<bool> SendAsync(IMessageMail message, CancellationToken? token = null)
         {
-            throw new NotImplementedException("In future version");
+            token?.ThrowIfCancellationRequested();
+            Message = message;
+            return new Task<bool>(Send);
+        }
+
+        public override Task<bool> SendAsync(CancellationToken? token = null, params IMessageMail[] messages)
+        {
+           token?.ThrowIfCancellationRequested();
+            foreach (var messageMail in messages)
+            {
+                token?.ThrowIfCancellationRequested();
+                Send(messageMail);
+            }
+            return new Task<bool>( () => true);
         }
     }
 }

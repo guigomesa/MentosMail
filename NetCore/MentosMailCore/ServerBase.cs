@@ -152,7 +152,7 @@ namespace MentosMailCore
 
         public abstract bool Send(MentosMailCore.MessageBox.IMessageMail message);
         public abstract bool Send(params MentosMailCore.MessageBox.IMessageMail[]  messages);
-        public abstract Task<bool> SendAssync(MentosMailCore.MessageBox.IMessageMail message, CancellationToken? token = null);
-        public abstract Task<bool> SendAssync(CancellationToken? token = null, params MentosMailCore.MessageBox.IMessageMail[] messages);
+        public abstract Task<bool> SendAsync(MentosMailCore.MessageBox.IMessageMail message, CancellationToken? token = null);
+        public abstract Task<bool> SendAsync(CancellationToken? token = null, params MentosMailCore.MessageBox.IMessageMail[] messages);
     }
 }
